@@ -10,6 +10,5 @@ copy and paste the following commands in your terminal for smooth installation
 - cd stego
 - pip install -r requirements.txt
 ## Usage
+- chmod +x stego.py
 - python3 stego.py
-## Demo
-![stego video](https://github.com/DharneeshB/stego/blob/main/Images/stego.mp4)
