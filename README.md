@@ -5,6 +5,7 @@ With Stego you can hide information in image files.
 - JPG supported  
 - Easy to use
 ## Installation
-1. git clone https://github.com/DharneeshB/stego.git
-2. cd stego
-3. pip install -r requirements.txt
+copy and paste the following commands in your terminal for smooth installation
+- git clone https://github.com/DharneeshB/stego.git
+- cd stego
+- pip install -r requirements.txt
