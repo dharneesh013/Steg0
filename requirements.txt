@@ -1,5 +1,2 @@
-tkinter
-tkinter.filedialog
-PIL
-Pillow
-stegano
+Pillow==8.3.0
+stegano==0.9.9
