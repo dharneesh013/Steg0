@@ -1,0 +1,5 @@
+tkinter
+tkinter.filedialog
+PIL
+Pillow
+stegano
