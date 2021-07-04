@@ -1,4 +1,4 @@
-""" #!/usr/bin/python3 """
+#!/usr/bin/python3
 
 # importing modules 
 from tkinter import *
@@ -12,14 +12,9 @@ def encode():
     main.destroy()
     enc=Tk()
     enc.geometry('500x400+300+150')
-    enc.iconbitmap('c:/Users/91934/Downloads/hacker.ico')
+    # enc.iconbitmap('Images/hacker.ico')
     enc.title("Encoding scheme")
     enc.resizable(False,False)
-
-# background image
-    bg=ImageTk.PhotoImage(file='c:/Users/91934/Downloads/colors.png')
-    my_label=Label(enc,image=bg)
-    my_label.place(x=0,y=0,relheight=1,relwidth=1)
 
 # lables and Entry boxes
     label1=Label(text="   SECRET MESSAGE   ",font = ("Helvetica 16 bold italic",10),fg="white",bg="black")
@@ -57,7 +52,7 @@ def decode():
     main.destroy()
     enc=Tk()
     enc.geometry('500x400+300+150')
-    enc.iconbitmap('c:/Users/91934/Downloads/hacker.ico')
+    # enc.iconbitmap('Images/hacker.ico')
     enc.title("Decoding scheme")
     enc.resizable(False,False)
 
@@ -93,16 +88,16 @@ def decode():
 main=Tk()
 main.geometry('500x400+300+150')
 main.title("Graphical stego tool")
-main.iconbitmap('c:/Users/91934/Downloads/hacker.ico')
+# main.iconbitmap('Images/hacker.ico')
 main.resizable(False,False)
 
 # background image
-bg=ImageTk.PhotoImage(file='c:/Users/91934/Downloads/social media.png')
+bg=ImageTk.PhotoImage(file='Images/social media.png')
 my_label=Label(main,image=bg)
 my_label.place(x=0,y=0,relheight=1,relwidth=1)
 
 # Encode button
-image=Image.open('c:/Users/91934/Pictures/encodeed.png')
+image=Image.open('Images/encodeed.png')
 image=image.resize((90, 60), Image. ANTIALIAS)
 enc_btn=ImageTk.PhotoImage(image)
 
@@ -119,7 +114,7 @@ encodeb.bind('<Enter>', on_enter)
 encodeb.bind('<Leave>', on_leave)
 
 # Decode button
-imageD=Image.open('c:/Users/91934/Pictures/DECODEED.png')
+imageD=Image.open('Images/DECODEED.png')
 imageD=imageD.resize((90,60), Image. ANTIALIAS)
 dec_btn=ImageTk.PhotoImage(imageD)
 
