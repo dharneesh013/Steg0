@@ -9,3 +9,5 @@ copy and paste the following commands in your terminal for smooth installation
 - git clone https://github.com/DharneeshB/stego.git
 - cd stego
 - pip install -r requirements.txt
+## Usage
+- python3 stego.py
