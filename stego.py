@@ -13,6 +13,7 @@ canvas=Canvas(root, width=600,height=550)
 canvas.grid(columnspan=3,rowspan=3)
 root.resizable(False,False)
 
+# Background image
 logo=Image.open('Images/gaming.jpg')
 logo=logo.resize((600, 550), Image. ANTIALIAS)
 logo=ImageTk.PhotoImage(logo)
@@ -27,6 +28,7 @@ def encode():
     canvas.grid(columnspan=3,rowspan=3)
     enc.resizable(False,False)
 
+    # background image
     logo=Image.open('Images/panther.jpg')
     logo=logo.resize((600, 550), Image. ANTIALIAS)
     logo=ImageTk.PhotoImage(logo)
@@ -57,6 +59,7 @@ def encode():
         else:
             messagebox.showwarning("pop up","unsuccessfull")
 
+    # Buttons
     txt1=StringVar()
     enc_btn=Button(enc, textvariable=txt1,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=openfile)
     txt1.set("Select file")
@@ -88,6 +91,7 @@ def decode():
     canvas.grid(columnspan=3,rowspan=3)
     enc.resizable(False,False)
 
+    # Background image
     logo=Image.open('Images/panther.jpg')
     logo=logo.resize((600, 550), Image. ANTIALIAS)
     logo=ImageTk.PhotoImage(logo)
@@ -115,6 +119,7 @@ def decode():
         text_box.grid(row=1,column=1)
 
 
+    # Buttons
     txt1=StringVar()
     enc_btn=Button(enc, textvariable=txt1,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=openfile)
     txt1.set("Select file")
@@ -138,6 +143,7 @@ def decode():
 
     enc.mainloop()
 
+# Buttons
 txt1=StringVar()
 enc_btn=Button(root, textvariable=txt1,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=encode)
 txt1.set("Encode")
@@ -156,6 +162,7 @@ dec_btn=Button(root, textvariable=txt3,height=2,width=12,font="Raleway",bg="#20b
 txt3.set("Decode")
 dec_btn.grid(row=2,column=2)
 
+# Labels
 lab1=Label(root, text=" ___/\____________________/\_____    ",font = "Helvetica 16 bold italic",fg="white",bg="black")
 lab1.place(relx=0.2,rely=0.1)
 
