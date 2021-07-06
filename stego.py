@@ -1,27 +1,44 @@
 #!/usr/bin/python3
 
-# importing modules 
+# importing modules
 from tkinter import *
 from tkinter.filedialog import *
+from PIL import Image,ImageTk
 from stegano import exifHeader as stg
 from tkinter import messagebox
-from PIL import Image,ImageTk
 
-# Encode function
+# root window
+root=Tk()
+canvas=Canvas(root, width=600,height=550)
+canvas.grid(columnspan=3,rowspan=3)
+root.resizable(False,False)
+
+logo=Image.open('Images/gaming.jpg')
+logo=logo.resize((600, 550), Image. ANTIALIAS)
+logo=ImageTk.PhotoImage(logo)
+my_label=Label(root,image=logo)
+my_label.place(x=0,y=0,relheight=1,relwidth=1)
+
+# encode window
 def encode():
-    main.destroy()
+    root.destroy()
     enc=Tk()
-    enc.geometry('500x400+300+150')
-    # enc.iconbitmap('Images/hacker.ico')
-    enc.title("Encoding scheme")
+    canvas=Canvas(enc, width=600,height=550)
+    canvas.grid(columnspan=3,rowspan=3)
     enc.resizable(False,False)
 
-# lables and Entry boxes
-    label1=Label(text="   SECRET MESSAGE   ",font = ("Helvetica 16 bold italic",10),fg="white",bg="black")
+    logo=Image.open('Images/panther.jpg')
+    logo=logo.resize((600, 550), Image. ANTIALIAS)
+    logo=ImageTk.PhotoImage(logo)
+    my_label=Label(enc,image=logo)
+    my_label.place(x=0,y=0,relheight=1,relwidth=1)
+
+    # lables and Entry boxes
+    label1=Label(text="   SECRET MESSAGE   ",font = ("Raleway",13),fg="white",bg="black")
     label1.place(relx=0.1,rely=0.3,width=150,height=40)
     entry=Entry()
     entry.place(relx=0.5,rely=0.3,width=180,height=40)
-    label2=Label(text="     FILE NAME     ",font = ("Helvetica 16 bold italic",10),fg="white",bg="black")
+    label2=Label(text="     FILE NAME     ",font = ("Raleway",13),fg="white",bg="black")
     label2.place(relx=0.1,rely=0.5,width=150,height=40)
     entrysave=Entry()
     entrysave.place(relx=0.5,rely=0.5,width=180,height=40)
@@ -40,23 +57,43 @@ def encode():
         else:
             messagebox.showwarning("pop up","unsuccessfull")
 
-# Buttons
-    buttonselect=Button(text='Select file',command=openfile)
-    buttonselect.place(relx=0.3,rely=0.7,height=40,width=80)
-    buttonencode=Button(text='Encode',command=encodee)
-    buttonencode.place(relx=0.5,rely=0.7,height=40,width=80)
+    txt1=StringVar()
+    enc_btn=Button(enc, textvariable=txt1,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=openfile)
+    txt1.set("Select file")
+    enc_btn.grid(row=2,column=0)
 
+    def ext():
+        enc.destroy()
 
-# Decode function
+    txt2=StringVar()
+    ext_btn=Button(enc, textvariable=txt2,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=ext)
+    txt2.set("Exit")
+    ext_btn.grid(row=2,column=1)
+
+    txt3=StringVar()
+    dec_btn=Button(enc, textvariable=txt3,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=encodee)
+    txt3.set("Encode")
+    dec_btn.grid(row=2,column=2)
+
+    lab=Label(enc, text="   Please select the file and then ENCODE !!",font = "Helvetica 16 bold italic",fg="white",bg="black")
+    lab.place(relx=0.1,rely=0.1)
+
+    enc.mainloop()
+
+# decode window
 def decode():
-    main.destroy()
+    root.destroy()
     enc=Tk()
-    enc.geometry('500x400+300+150')
-    # enc.iconbitmap('Images/hacker.ico')
-    enc.title("Decoding scheme")
+    canvas=Canvas(enc, width=600,height=550)
+    canvas.grid(columnspan=3,rowspan=3)
     enc.resizable(False,False)
 
-# Functions
+    logo=Image.open('Images/panther.jpg')
+    logo=logo.resize((600, 550), Image. ANTIALIAS)
+    logo=ImageTk.PhotoImage(logo)
+    my_label=Label(enc,image=logo)
+    my_label.place(x=0,y=0,relheight=1,relwidth=1)
+
     def openfile():
         global fileopen
         fileopen=StringVar()
@@ -65,74 +102,64 @@ def decode():
     def decodee():
         response=messagebox.askyesno("pop up","Do you want to decode the message")
         if response==1:
-            message=stg.reveal(fileopen)
+            msg=stg.reveal(fileopen)
             messagebox.showinfo("pop up","successfully decoded")
         else:
             messagebox.showwarning("pop up","unsuccessfull")
+            
 # decoded message
-        label4=Label(text=message, font = ("Helvetica 16 bold italic",10),fg="white",bg="black")
-        label4.place(relx=0.3,rely=0.2)
-
-# Buttons
-    buttonselect=Button(text='Select file',command=openfile,borderwidth=2)
-    buttonselect.place(relx=0.1,rely=0.2,height=40,width=80)
-    buttondecode=Button(text='Decode',command=decodee,borderwidth=2)
-    buttondecode.place(relx=0.1,rely=0.6,height=40,width=80)
-
-# Label
-    label5=Label(text="After choosing the file press to Decode the Image", font = ("Helvetica 16 bold italic",10),fg="white",bg="black")
-    label5.place(relx=0.3,rely=0.6)
+        text_box=Text(enc, height=8,width=25,padx=15,pady=15)
+        text_box.insert(1.0,msg)
+        text_box.tag_config("center",justify="center")
+        text_box.tag_add("center",1.0,"end")
+        text_box.grid(row=1,column=1)
 
 
-# Main window
-main=Tk()
-main.geometry('500x400+300+150')
-main.title("Graphical stego tool")
-# main.iconbitmap('Images/hacker.ico')
-main.resizable(False,False)
+    txt1=StringVar()
+    enc_btn=Button(enc, textvariable=txt1,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=openfile)
+    txt1.set("Select file")
+    enc_btn.grid(row=2,column=0)
 
-# background image
-bg=ImageTk.PhotoImage(file='Images/social media.png')
-my_label=Label(main,image=bg)
-my_label.place(x=0,y=0,relheight=1,relwidth=1)
+    def ext():
+        enc.destroy()
 
-# Encode button
-image=Image.open('Images/encodeed.png')
-image=image.resize((90, 60), Image. ANTIALIAS)
-enc_btn=ImageTk.PhotoImage(image)
+    txt2=StringVar()
+    ext_btn=Button(enc, textvariable=txt2,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=ext)
+    txt2.set("Exit")
+    ext_btn.grid(row=2,column=1)
 
-# Hover effect
-def on_enter(e):
-   encodeb.config(background='OrangeRed3', foreground= "white")
-def on_leave(e):
-   encodeb.config(background= 'SystemButtonFace', foreground= 'black')
+    txt3=StringVar()
+    dec_btn=Button(enc, textvariable=txt3,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=decodee)
+    txt3.set("Decode")
+    dec_btn.grid(row=2,column=2)
 
-encodeb=Button(image=enc_btn,command=encode,borderwidth=1,bg="black")
-encodeb.place(relx=0.4,rely=0.5)
+    lab=Label(enc, text="   Please select the file and then DECODE !!",font = "Helvetica 16 bold italic",fg="white",bg="black")
+    lab.place(relx=0.1,rely=0.1)
 
-encodeb.bind('<Enter>', on_enter)
-encodeb.bind('<Leave>', on_leave)
+    enc.mainloop()
 
-# Decode button
-imageD=Image.open('Images/DECODEED.png')
-imageD=imageD.resize((90,60), Image. ANTIALIAS)
-dec_btn=ImageTk.PhotoImage(imageD)
+txt1=StringVar()
+enc_btn=Button(root, textvariable=txt1,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=encode)
+txt1.set("Encode")
+enc_btn.grid(row=2,column=0)
 
-def on_enter(e):
-   decodeb.config(background='OrangeRed3', foreground= "white")
+def ext():
+    root.destroy()
 
-def on_leave(e):
-   decodeb.config(background= 'SystemButtonFace', foreground= 'black')
+txt2=StringVar()
+ext_btn=Button(root, textvariable=txt2,height=2,width=12,font="Raleway",bg="#2ec4b6",fg="white",command=ext)
+txt2.set("Exit")
+ext_btn.grid(row=2,column=1)
 
-decodeb=Button(image=dec_btn,command=decode,borderwidth=1,bg="black")
-decodeb.place(rely=0.7,relx=0.4)
+txt3=StringVar()
+dec_btn=Button(root, textvariable=txt3,height=2,width=12,font="Raleway",bg="#20bebe",fg="white",command=decode)
+txt3.set("Decode")
+dec_btn.grid(row=2,column=2)
 
-decodeb.bind('<Enter>', on_enter)
-decodeb.bind('<Leave>', on_leave)
+lab1=Label(root, text=" ___/\____________________/\_____    ",font = "Helvetica 16 bold italic",fg="white",bg="black")
+lab1.place(relx=0.2,rely=0.1)
 
-# Top label
-lab=Label(main, text="     HIDE and REVEAL using STEGO !!    ",font = "Helvetica 16 bold italic",fg="white",bg="black")
-lab.place(relx=0.1,rely=0.3)
+lab=Label(root, text="  HIDE and REVEAL using STEGO !!    ",font = "Helvetica 16 bold italic",fg="white",bg="black")
+lab.place(relx=0.2,rely=0.2)
 
-# END
-main.mainloop()
+root.mainloop()
