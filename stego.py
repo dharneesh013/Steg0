@@ -12,6 +12,7 @@ root=Tk()
 canvas=Canvas(root, width=600,height=550)
 canvas.grid(columnspan=3,rowspan=3)
 root.resizable(False,False)
+root.title("stego")
 
 # Background image
 logo=Image.open('Images/gaming.jpg')
@@ -27,6 +28,7 @@ def encode():
     canvas=Canvas(enc, width=600,height=550)
     canvas.grid(columnspan=3,rowspan=3)
     enc.resizable(False,False)
+    enc.title("stego encoding")
 
     # background image
     logo=Image.open('Images/panther.jpg')
@@ -90,6 +92,7 @@ def decode():
     canvas=Canvas(enc, width=600,height=550)
     canvas.grid(columnspan=3,rowspan=3)
     enc.resizable(False,False)
+    enc.title("stego decoding")
 
     # Background image
     logo=Image.open('Images/panther.jpg')
